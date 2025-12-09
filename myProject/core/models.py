@@ -12,3 +12,5 @@ class Student(models.Model):
     def __str__(self):
         
         return f"{self.student_id} - {self.full_name}"
+    
+    

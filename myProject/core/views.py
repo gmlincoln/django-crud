@@ -2,6 +2,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from core.models import Student
 
+from django.db.models import Q 
+
 # Create your views here.
 
 def home(request):
@@ -28,13 +30,33 @@ def add_student(request):
 
 def all_student(request):
     
-    students = Student.objects.all()
+    query = request.GET.get('query')
+    
+    if query:
+        data = Student.objects.filter(
+            Q(full_name__icontains = query)|
+            Q(student_id__icontains = query)
+            )
+        
+    else:
+        data = Student.objects.all()
     
     context = {
-        'students': students
+        "students":data
     }
     
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
     return render(request, 'student/all_student.html', context)
+
 
 def view_student(request, id):
     student = Student.objects.filter(id=id)
@@ -42,6 +64,9 @@ def view_student(request, id):
         'student': student
     }
     return render(request, 'student/view_student.html', context)
+
+
+
 
 def delete_student(request, id):
     student = Student.objects.filter(id=id)
