@@ -112,6 +112,11 @@ h2 {
     background-color: #0056b3;
 }
 
+.short-icons a{
+    color:black;
+    font-weight: 700;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .search_box {
@@ -228,3 +233,4 @@ table th {
 table td {
     font-size: 15px;
 }
+

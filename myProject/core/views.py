@@ -39,17 +39,20 @@ def all_student(request):
             )
         
     else:
-        data = Student.objects.all()
+       data = Student.objects.all() 
     
+    
+    order = request.GET.get('order')
+    
+    if order == 'asc':
+        data = data.order_by('full_name')
+    elif order == 'desc':
+        data = data.order_by('-full_name')
+    
+   
     context = {
         "students":data
     }
-    
-    
-   
-    
-    
-    
     
     
     
